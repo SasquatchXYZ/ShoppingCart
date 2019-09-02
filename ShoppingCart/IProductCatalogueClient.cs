@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using ShoppingCart;
-
 namespace ShoppingCart
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using ShoppingCart;
     public interface IProductCatalogueClient
     {
         Task<IEnumerable<ShoppingCartItem>>

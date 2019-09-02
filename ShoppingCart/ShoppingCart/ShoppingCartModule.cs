@@ -1,16 +1,13 @@
-//using EventFeed;
-
-using System.Reflection.Metadata.Ecma335;
-using Nancy;
-using Nancy.ModelBinding;
-
 namespace ShoppingCart.ShoppingCart
 {
+    using EventFeed;
+    using Nancy;
+    using Nancy.ModelBinding;
     public class ShoppingCartModule : NancyModule
     {
         public ShoppingCartModule(
             IShoppingCartStore shoppingCartStore,
-            IProductCatalogClient productCatalog,
+            IProductCatalogueClient productCatalog,
             IEventStore eventStore
         ) : base("/shoppingcart")
         {
@@ -42,7 +39,7 @@ namespace ShoppingCart.ShoppingCart
 
                 var shoppingCart = shoppingCartStore.Get(userId);
                 shoppingCart.RemoveItems(productCatalogIds, eventStore);
-                shoppingCart.Save(shoppingCart);
+                shoppingCartStore.Save(shoppingCart);
 
                 return shoppingCart;
             });
